@@ -1,0 +1,19 @@
+body {
+  margin: 0px 0px;
+}
+
+h4.item {
+  font-weight: bold;
+}
+
+img.item {
+  float: left;
+  width: 100px;
+  height: 100px;
+  padding-right: 5px;
+}
+
+p.item {
+  font-size: 12px;
+  color: grey;
+}

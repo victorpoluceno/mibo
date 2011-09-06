@@ -1,0 +1,36 @@
+<!doctype html> 
+<html> 
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+        <title>Mibo</title> 
+        <link rel="stylesheet" type="text/css" href="http://cdn.sencha.io/touch/1.1.0/resources/css/sencha-touch.css" /> 
+        {% assets filter="yui_css", output="gen/packed.css",
+            "app/css/channel.css", "app/css/item.css" %}
+            <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+        {% endassets %}
+    </head> 
+    <body>
+        <script src="{{ url_for('static', filename='vendor/LABjs/LAB.js') }}"></script>
+        <script>
+            document.API_SERVER = "{{ config.API_SERVER }}";
+            $LAB.script("http://cdn.sencha.io/touch/1.1.0/sencha-touch.js").wait()
+            {% assets filter="yui_js", output="gen/packed.js",
+                "app/js/app.js",
+                "app/js/views/viewport.js",
+                "app/js/models/category.js",
+                "app/js/models/channel.js",
+                "app/js/models/item.js",
+                "app/js/views/category.js",
+                "app/js/views/channel.js",
+                "app/js/views/item.js",
+                "app/js/views/player.js",
+                "app/js/controllers/category.js",
+                "app/js/controllers/channel.js",
+                "app/js/controllers/item.js",
+                "app/js/controllers/player.js" %}
+                .script("{{ ASSET_URL }}")
+            {% endassets %}
+        </script>
+    </body> 
+</html>
+

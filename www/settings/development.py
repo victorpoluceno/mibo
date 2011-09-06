@@ -1,0 +1,5 @@
+ASSETS_DEBUG = True
+ASSETS_CACHE = False
+
+DEBUG = True
+

@@ -1,0 +1,19 @@
+body {
+  margin: 0px 0px;
+}
+
+h4.channel {
+  font-weight: bold;
+}
+
+img.channel {
+  float: left;
+  width: 100px;
+  height: 100px;
+  padding-right: 5px;
+}
+
+p.channel {
+  font-size: 12px;
+  color: grey;
+}
