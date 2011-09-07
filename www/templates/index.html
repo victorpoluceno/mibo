@@ -4,7 +4,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
         <title>Mibo</title> 
         <link rel="stylesheet" type="text/css" href="http://cdn.sencha.io/touch/1.1.0/resources/css/sencha-touch.css" /> 
-        {% assets filter="yui_css", output="gen/packed.css",
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        {% assets filters="yui_css", output="gen/packed.css",
             "app/css/channel.css", "app/css/item.css" %}
             <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
         {% endassets %}
@@ -14,7 +15,7 @@
         <script>
             document.API_SERVER = "{{ config.API_SERVER }}";
             $LAB.script("http://cdn.sencha.io/touch/1.1.0/sencha-touch.js").wait()
-            {% assets filter="yui_js", output="gen/packed.js",
+            {% assets filters="yui_js", output="gen/packed.js",
                 "app/js/app.js",
                 "app/js/views/viewport.js",
                 "app/js/models/category.js",
