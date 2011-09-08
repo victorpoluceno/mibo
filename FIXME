@@ -5,3 +5,5 @@ assets.init_app(app)
 # and doesnt work with pypy either 
 
 # when gzip enabled AttributeError: 'module' object has no attribute 'GzipFile'
+
+# make a for of flask-debugtoolbar to make it work
