@@ -7,12 +7,7 @@ app.views.PlayerDetail = Ext.extend(Ext.Panel, {
             ui: 'back',
             listeners: {
                 'tap': function () {
-                    Ext.dispatch({
-                        controller: app.controllers.player,
-                        action: 'back',
-                        animation: {type:'slide', direction:'right'},
-                        id: this.id,
-                    });
+                    window.history.back();
                 }
             }
         }]
@@ -22,14 +17,9 @@ app.views.PlayerDetail = Ext.extend(Ext.Panel, {
         xtype: 'video',
         loop: true,
     }],
-    updateByItem: function(record) {
-        console.log(record.data.url);
-        console.log(record.data.thumbnail_url);
-        this.getDockedItems()[0].items.items[0].id = record.get('channel_id');
-        this.items.items[0].url = record.data.url;
-        this.items.items[0].posrterUrl = record.data.thumbnail_url;
+    setTitle: function(title) {
         var toolbar = this.getDockedItems()[0];
-        toolbar.setTitle(record.get('name'));
-    },
+        toolbar.setTitle(title);
+    }
 });
 

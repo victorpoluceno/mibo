@@ -10,11 +10,12 @@ app.views.CategoryList = Ext.extend(Ext.Panel, {
         itemTpl: '{name}',
         onItemDisclosure: function (record) {
             Ext.dispatch({
-                controller: app.controllers.category,
-                action: 'show',
-                id: record.getId()
+                controller: 'channel',
+                action: 'index',
+                category_id: record.getId(),
+                historyUrl: Ext.util.Format.format('channel/{0}/', record.getId())
             });
         }
-    }],
+    }]
 });
 

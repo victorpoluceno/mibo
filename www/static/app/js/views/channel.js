@@ -7,11 +7,7 @@ app.views.ChannelList = Ext.extend(Ext.Panel, {
             ui: 'back',
             listeners: {
                 'tap': function () {
-                    Ext.dispatch({
-                        controller: app.controllers.channel,
-                        action: 'back',
-                        animation: {type:'slide', direction:'right'}
-                    });
+                    window.history.back();
                 }
             }
         }]
@@ -33,20 +29,16 @@ app.views.ChannelList = Ext.extend(Ext.Panel, {
             '</div>',
         onItemDisclosure: function (record) {
             Ext.dispatch({
-                controller: app.controllers.channel,
-                action: 'show',
-                id: record.getId()
+                controller: 'item',
+                action: 'index',
+                channel_id: record.getId(),
+                historyUrl: Ext.util.Format.format('item/{0}/', record.getId())
             })
         },
     }],
-    updateByCategory: function(record) {
-        //FIXME find a way to avoi load every time
-        app.stores.channel.load({
-            'limit': 10, 
-            'category': record.getId(),
-        });
+    setTitle: function(title) {
         var toolbar = this.getDockedItems()[0];
-        toolbar.setTitle(record.get('name'));
-    },
+        toolbar.setTitle(title);
+    }
 });
 
