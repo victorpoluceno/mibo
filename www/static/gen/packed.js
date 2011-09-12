@@ -187,7 +187,7 @@ app.views.ChannelList = Ext.extend(Ext.Panel, {
         store: app.stores.channel,
         itemTpl: '<div class="channel">' +
             '<img class="channel" src="{thumbnail_url}"' +
-            'alt="{name}" onerror="this.onerror=null; ' +
+            'onerror="this.onerror=null; ' +
             'this.src=\'/static/app/img/missing.jpeg\';"></img>' +
             '<h4 class="channel">{name}</h4>' +
             '<p class="channel">{publisher}</p>' +
@@ -227,14 +227,17 @@ app.views.ItemList = Ext.extend(Ext.Panel, {
     items: [{
         xtype: 'list',
         store: app.stores.item,
-        //FIXME: it there is no thumbnail get from channel
-        //FIXME save this as a external file?
         itemTpl: new Ext.XTemplate('<div class="item">' +
-                '<img class="item" width=50 height=50 ' +
-                'src={[ this.channelThumbnail(values.channel_id) ]}>' +
-                '</img><h4 class="item">{name}</h4>' +
-                '<p class="item">{date}</p>' + 
+                '<img class="item" ' +
+                'src={[ this.channelThumbnail(values.channel_id) ]} ' +
+                'onerror="this.onerror=null; ' +
+                'this.src=\'/static/app/img/missing.jpeg\';"></img>' +
+                '<h4 class="item">{name}</h4>' +
+                '<p class="item">{[ this.formatDate(values.date) ]}</p>' + 
                 '</div>', {
+            formatDate: function(date){
+                return new Date(date).format('Y-m-d H:i:s');
+            },
             channelThumbnail: function(channel_id){
                 //FIXME this sucks, have to fix belongsto from item to channel
                 var channel = app.stores.channel.getById(channel_id);
@@ -304,6 +307,7 @@ Ext.regController('channel', {
         var category_id = options.category_id,
                 category = app.stores.category.getById(category_id);
         if (category){
+            app.stores.channel.clearFilter();
             app.stores.channel.load({
                 'limit': 10, 
                 'category': category_id,
@@ -332,6 +336,7 @@ Ext.regController('item', {
         var channel_id = options.channel_id,
                 channel = app.stores.channel.getById(parseInt(channel_id));
         if (channel){
+            app.stores.item.clearFilter();
             app.stores.item.load({
                 'limit': 10, 
                 'channel': channel_id,
