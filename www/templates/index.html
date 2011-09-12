@@ -16,6 +16,7 @@
             document.API_SERVER = "{{ config.API_SERVER }}";
             $LAB.script("http://cdn.sencha.io/touch/1.1.0/sencha-touch.js").wait()
             {% assets filters="yui_js", output="gen/packed.js",
+                "app/js/routes.js",
                 "app/js/app.js",
                 "app/js/views/viewport.js",
                 "app/js/models/category.js",
