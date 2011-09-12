@@ -16,14 +16,17 @@ app.views.ItemList = Ext.extend(Ext.Panel, {
     items: [{
         xtype: 'list',
         store: app.stores.item,
-        //FIXME: it there is no thumbnail get from channel
-        //FIXME save this as a external file?
         itemTpl: new Ext.XTemplate('<div class="item">' +
-                '<img class="item" width=50 height=50 ' +
-                'src={[ this.channelThumbnail(values.channel_id) ]}>' +
-                '</img><h4 class="item">{name}</h4>' +
-                '<p class="item">{date}</p>' + 
+                '<img class="item" ' +
+                'src={[ this.channelThumbnail(values.channel_id) ]} ' +
+                'onerror="this.onerror=null; ' +
+                'this.src=\'/static/app/img/missing.jpeg\';"></img>' +
+                '<h4 class="item">{name}</h4>' +
+                '<p class="item">{[ this.formatDate(values.date) ]}</p>' + 
                 '</div>', {
+            formatDate: function(date){
+                return new Date(date).format('Y-m-d H:i:s');
+            },
             channelThumbnail: function(channel_id){
                 //FIXME this sucks, have to fix belongsto from item to channel
                 var channel = app.stores.channel.getById(channel_id);

@@ -18,7 +18,7 @@ app.views.ChannelList = Ext.extend(Ext.Panel, {
         store: app.stores.channel,
         itemTpl: '<div class="channel">' +
             '<img class="channel" src="{thumbnail_url}"' +
-            'alt="{name}" onerror="this.onerror=null; ' +
+            'onerror="this.onerror=null; ' +
             'this.src=\'/static/app/img/missing.jpeg\';"></img>' +
             '<h4 class="channel">{name}</h4>' +
             '<p class="channel">{publisher}</p>' +
