@@ -14,7 +14,6 @@ Ext.regApplication({
     api_server: document.API_SERVER,
     launch: function() {
         this.views.viewport = new this.views.Viewport();
-        //this.views.viewport = new this.views.Viewport({application: this});
     },
 });
 
@@ -186,9 +185,6 @@ app.views.ChannelList = Ext.extend(Ext.Panel, {
     items: [{
         xtype: 'list',
         store: app.stores.channel,
-        //FIXME save this as a external file?
-        //FIXME need to isolate this and check performance of onerror code
-        //TODO add item_count value
         itemTpl: '<div class="channel">' +
             '<img class="channel" src="{thumbnail_url}"' +
             'alt="{name}" onerror="this.onerror=null; ' +
