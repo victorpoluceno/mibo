@@ -6,6 +6,7 @@ Ext.regController('item', {
         var channel_id = options.channel_id,
                 channel = app.stores.channel.getById(parseInt(channel_id));
         if (channel){
+            app.stores.item.clearFilter();
             app.stores.item.load({
                 'limit': 10, 
                 'channel': channel_id,
