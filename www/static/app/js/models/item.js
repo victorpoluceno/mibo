@@ -5,7 +5,6 @@ app.models.Item = Ext.regModel('app.models.Item', {
     ]
 });
 
-//FIXME use rest proxy to avoid non cache 
 app.stores.item = new Ext.data.Store({
     model: "app.models.Item",
     proxy: {
@@ -21,8 +20,10 @@ app.stores.item = new Ext.data.Store({
 });
 
 app.stores.item.on('beforeload', function(store, operation){
-    // hack that enable browser cache by avoiding mutable post 
-    // fix on the callback param
+    // hack that enable browser cache by avoiding mutable 
+    // postfix on the callback param
+    Ext.data.ScriptTagProxy.TRANS_ID = 1000;
+    // filter params required by mibo api
     Ext.data.ScriptTagProxy.TRANS_ID = 1000;
     store.proxy.extraParams = {
         'id': operation.channel, 

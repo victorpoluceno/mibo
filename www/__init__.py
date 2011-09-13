@@ -8,3 +8,4 @@ app.config.from_envvar('WWW_SETTINGS', silent=True)
 assets = Environment(app)
 
 import www.views
+

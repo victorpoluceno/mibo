@@ -1,1 +1,2 @@
 - Check for error when retreving data on all controllers like channel.js
+- Use restproxy as to avoid non cache behaviori and some stream server to workaround origin not allowed ajax problem

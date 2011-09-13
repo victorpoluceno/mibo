@@ -3,8 +3,6 @@ app.models.Category = Ext.regModel('app.models.Category', {
     fields: ['id', 'name', 'url']
 });
 
-
-//FIXME use restproxy to avoid non cache behavior
 app.stores.category = new Ext.data.Store({
     autoLoad: true,
     model: "app.models.Category",
